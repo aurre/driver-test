@@ -28,8 +28,6 @@ async function seed() {
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-
-  const question = await Promise.all([]);
 }
 
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
