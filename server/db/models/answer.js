@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = '../db';
+const db = require('../db');
 
 // Answer
 // AnswerId
@@ -8,6 +8,10 @@ const db = '../db';
 const Answer = db.define('answer', {
   answer: {
     type: Sequelize.STRING,
+    allowNull: false,
+  },
+  correct: {
+    type: Sequelize.BOOLEAN,
     allowNull: false,
   },
 });
