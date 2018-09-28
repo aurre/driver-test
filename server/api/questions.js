@@ -7,3 +7,9 @@ router.get('/', (req, res, next) => {
     .then(question => res.json(question))
     .catch(next);
 });
+
+router.get('/:id', (req, res, next) => {
+  Question.findById(req.params.id)
+    .then(question => res.json(question))
+    .catch(next);
+});
