@@ -1,2 +1,32 @@
-.sidebar {
+.nav {
+  display: flex;
+  justify-content: center;
+  font-family: 'Asap', sans-serif;
+  font-size: 18px;
+}
+
+a {
+  color: #414344;
+}
+
+a:hover {
+  color: lightgrey;
+}
+
+.container {
+  margin-top: 90px;
+}
+
+.header {
+  font-family: 'Asap', sans-serif;
+  font-size: 42px;
+  color: lightgrey;
+  display: flex;
+  justify-content: center;
+}
+
+.span-color {
+  font-family: 'Asap', sans-serif;
+  font-size: 42px;
+  color: #414344;
 }

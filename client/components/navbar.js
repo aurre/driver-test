@@ -3,28 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
+import './navbar.css';
 
-const SideBar = ({ handleClick, isLoggedIn }) => (
-  <div class="sidebar">
-    <h1>TestDrive</h1>
-    <nav>
+const Navbar = ({ handleClick, isLoggedIn }) => (
+  <div className="container">
+    <h1 className="header">
+      Test
+      <span className="span-color">Drive</span>
+    </h1>
+    <nav className="nav">
       {isLoggedIn ? (
         <div>
-          {/* The SideBar will show these links after you log in */}
+          {/* The Navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <Link to="/test">Test</Link>
         </div>
       ) : (
         <div>
-          {/* The SideBar will show these links before you log in */}
+          {/* The Navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
     </nav>
-    <hr />
   </div>
 );
 
@@ -48,12 +52,12 @@ const mapDispatch = dispatch => {
 export default connect(
   mapState,
   mapDispatch
-)(SideBar);
+)(Navbar);
 
 /**
  * PROP TYPES
  */
-SideBar.propTypes = {
+Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 };

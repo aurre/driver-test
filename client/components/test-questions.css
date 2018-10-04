@@ -1,0 +1,15 @@
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.bg {
+  background-color: lightgrey;
+  max-width: 360px;
+  margin: 0 auto;
+}

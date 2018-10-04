@@ -17,6 +17,7 @@ const Answer = require('./answer');
  */
 
 Answer.belongsTo(Question);
+Question.hasMany(Answer);
 
 module.exports = {
   User,
