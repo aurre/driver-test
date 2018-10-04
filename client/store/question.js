@@ -21,8 +21,9 @@ const initialState = {
 
 export const getQuestionThunk = questionId => {
   return async dispatch => {
-    const { data } = await axios.get(`/api/questions/${questionId}`);
-    dispatch(getQuestionAction(data));
+    const question = await axios.get(`/api/questions/${questionId}`);
+    console.log(question.data);
+    dispatch(getQuestionAction(question.data));
   };
 };
 

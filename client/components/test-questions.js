@@ -11,7 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Card from '@material-ui/core/Card';
 
 class Question extends React.Component {
-  //   const { question, answers, handleSubmitAnswer, next } = props;
   constructor() {
     super();
     this.state = {
@@ -22,34 +21,37 @@ class Question extends React.Component {
   async componentDidMount() {
     console.log(this.props.question);
     await this.props.getQuestionThunk(this.state.IdCounter);
-    console.log(this.props.question);
     this.setState(prevState => {
       return { IdCounter: prevState.IdCounter++ };
     });
   }
 
   render() {
-    console.log(this.props.question);
+    console.log(this.props.question.question.question);
+    console.log(this.props.question.question.answers);
+
+    let question = this.props.question.question.question;
+    let answers = this.props.question.question.answers || [];
     return (
       <Card className="bg">
-        <h4 className="center">Question</h4>
+        <h4 className="center">{question || 'Question'}</h4>
         <div className="root">
           <List>
-            {[0, 1, 2, 3].map(value => (
+            {answers.map(value => (
               <ListItem
-                key={value}
+                key={value.answer}
                 role={undefined}
                 dense
                 button
-                // onClick={this.handleToggle(value)}
+                //   onClick={this.handleToggle(value.id)}
                 // className={classes.listItem}
               >
                 <Checkbox
-                  //   checked={this.state.checked.indexOf(value) !== -1}
+                  // checked={this.state.checked.indexOf(value.id) !== -1}
                   tabIndex={-1}
                   disableRipple
                 />
-                <ListItemText primary={`Line item ${value + 1}`} />
+                <ListItemText primary={value.answer} />
               </ListItem>
             ))}
           </List>
