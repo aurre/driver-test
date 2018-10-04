@@ -22,7 +22,6 @@ const initialState = {
 export const getQuestionThunk = questionId => {
   return async dispatch => {
     const { data } = await axios.get(`/api/questions/${questionId}`);
-    console.log(data);
     dispatch(getQuestionAction(data));
   };
 };

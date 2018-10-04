@@ -20,8 +20,9 @@ class Question extends React.Component {
   }
 
   async componentDidMount() {
-    let question = await this.props.getQuestionThunk(this.state.IdCounter);
-    console.log(question);
+    console.log(this.props.question);
+    await this.props.getQuestionThunk(this.state.IdCounter);
+    console.log(this.props.question);
     this.setState(prevState => {
       return { IdCounter: prevState.IdCounter++ };
     });
