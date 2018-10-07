@@ -6,10 +6,25 @@
 
 .center {
   text-align: center;
+  margin: 1rem;
 }
 
 .bg {
   background-color: lightgrey;
   max-width: 360px;
   margin: 0 auto;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+}
+
+.item-bg-success {
+  background-color: green !important;
+}
+
+.item-bg-failed {
+  background-color: red !important;
 }
