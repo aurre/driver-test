@@ -4,6 +4,7 @@ import './test-questions.css';
 import { getQuestionThunk } from '../store/question';
 import SuccessAlert from './success-alert';
 import ErrorAlert from './error-alert';
+import Score from './score';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItem from '@material-ui/core/ListItem';
@@ -21,6 +22,8 @@ class Question extends React.Component {
       correct: false,
       failed: false,
       correctAnswer: '',
+      positive: 0,
+      negative: 0,
     };
   }
 
@@ -42,9 +45,17 @@ class Question extends React.Component {
     answers.forEach(answer => {
       if (this.state.checked.indexOf(answer.id) !== -1) {
         if (answer.correct) {
-          this.setState({ correct: true });
+          this.setState(prevState => {
+            return { correct: true, positive: prevState.positive + 1 };
+          });
         } else {
-          this.setState({ failed: true, checked: [] });
+          this.setState(prevState => {
+            return {
+              failed: true,
+              checked: [],
+              negative: prevState.negative + 1,
+            };
+          });
         }
       }
     });
@@ -76,49 +87,56 @@ class Question extends React.Component {
   render() {
     let question = this.props.question.question.question || '';
     let answers = this.props.question.question.answers || [];
-    return (
-      <Card className="bg">
-        <h4 className="center">{question}</h4>
-        {this.state.correct && <SuccessAlert />}
-        {this.state.failed && <ErrorAlert props={this.state.correctAnswer} />}
 
-        <div className="root">
-          <List>
-            {answers.map(value => (
-              <ListItem
-                key={value.answer}
-                role={undefined}
-                dense
-                button
-                onClick={this.handleToggle(value.id)}
-              >
-                <Checkbox
-                  checked={this.state.checked.indexOf(value.id) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                />
-                <ListItemText primary={value.answer} />
-              </ListItem>
-            ))}
-          </List>
+    return (
+      <div>
+        <Card className="bg">
+          <h4 className="center">{question}</h4>
+          {this.state.correct && <SuccessAlert />}
+          {this.state.failed && <ErrorAlert props={this.state.correctAnswer} />}
+
+          <div className="root">
+            <List>
+              {answers.map(value => (
+                <ListItem
+                  key={value.answer}
+                  role={undefined}
+                  dense
+                  button
+                  onClick={this.handleToggle(value.id)}
+                >
+                  <Checkbox
+                    checked={this.state.checked.indexOf(value.id) !== -1}
+                    tabIndex={-1}
+                    disableRipple
+                  />
+                  <ListItemText primary={value.answer} />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+          <div className="buttons-container">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSubmitAnswer}
+            >
+              Submit
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.handleNext}
+            >
+              Next
+            </Button>
+          </div>
+        </Card>
+        <div>
+          <h4>Correct Answers: {this.state.positive}</h4>
+          <h4>Wrong Answers: {this.state.negative}</h4>
         </div>
-        <div className="buttons-container">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleSubmitAnswer}
-          >
-            Submit
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.handleNext}
-          >
-            Next
-          </Button>
-        </div>
-      </Card>
+      </div>
     );
   }
 }

@@ -8,3 +8,4 @@ export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
 export { default as Question } from './test-questions';
 export { default as successAlert } from './success-alert';
+export { default as Score } from './score';

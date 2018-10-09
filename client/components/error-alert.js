@@ -79,7 +79,6 @@ const styles2 = theme => ({
 
 class CustomizedSnackbars extends React.Component {
   constructor(props) {
-    console.log('PROPS ===> ', props);
     super(props);
     this.state = {
       correctAnswer: props.props || '',
